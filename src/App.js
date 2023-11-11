@@ -19,11 +19,12 @@ function App() {
       <Routes>
          <Route path="login" element={<Login />} />
          <Route path="register" element={<Register />} />
-         <Route path="/" element={<Layout />} />
-            {/* <Route path="explore" element={<Home />} />
+         <Route path="/" element={<Layout />} >
+            <Route index path="/" element={<Home />} />
             <Route path="my-blogs" element={<MyBlogs />} />
-            <Route path="bookmarks" element={<Bookmark />} /> */}
-         {/* </Route> */}
+            <Route path="bookmarks" element={<Bookmark />} /> 
+            <Route path="bookmarks" element={<Bookmark />} /> 
+         </Route>
 
       </Routes>
     </div>

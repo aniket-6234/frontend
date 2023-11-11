@@ -5,13 +5,16 @@
   font-family: "IBM Plex Sans Thai", sans-serif;
 }
 
-.login-top {
+.login-top, .register-top {
   width: 100%;
   height: 70vh;
   background-color: #2239EB;
   display: flex;
   justify-content: space-between;
   padding: 100px 150px;
+}
+.register-top {
+  background-color: #4b1399;
 }
 .login-bottom {
   width: 100%;
@@ -70,7 +73,7 @@
   font-weight: 500;
   font-size: 18px;
 }
-.login-btn {
+.login-btn, .register-btn {
   width: 100%;
   height: 45px;
   background-color: #2239EB;
@@ -80,6 +83,9 @@
   color: white;
   cursor: pointer;
   margin-top: 65px;
+}
+.register-btn {
+  background-color: #4b1399;
 }
 .input-text {
   background-color: transparent;

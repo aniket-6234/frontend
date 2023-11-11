@@ -54,7 +54,7 @@ const Register = () => {
   };
   return (
     <div>
-      <div className="login-top">
+      <div className="register-top">
         <div>
           <div className="login-logo">
             <div style={{ width: "25px" }}>
@@ -127,7 +127,7 @@ const Register = () => {
           <div className={formError ? "form-error" : "form-not-error"}>
             {formError ? errorMessage : ""}
           </div>
-          <div onClick={handleLogin} className="login-btn">
+          <div onClick={handleLogin} className="register-btn">
             <p>Sign Up</p>
             <div style={{ width: "20px", marginLeft: "10px" }}>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
+import Loader from "../images/loader.gif";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(true);
@@ -7,26 +8,31 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
- const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const checkValidation = () => {
-    if (email === "" && password === "") {
-      setFormError(true);
-      setErrorMessage("email and password must not be empty");
-    } else if (email === "") {
-      setFormError(true);
-      setErrorMessage("email is required");
-    } else if (!emailValidation()) {
-      setFormError(true);
-      setErrorMessage("invalid email");
-    } else if (password === "") {
-      setFormError(true);
-      setErrorMessage("password is required");
-    } else if (password.length < 8) {
-      setFormError(true);
-      setErrorMessage("password must be at least 8 characters");
-    }
+    setIsLoading(true);
+    setTimeout(() => {
+      if (email === "" && password === "") {
+        setFormError(true);
+        setErrorMessage("Email and Password must not be empty");
+      } else if (email === "") {
+        setFormError(true);
+        setErrorMessage("Email is required");
+      } else if (!emailValidation()) {
+        setFormError(true);
+        setErrorMessage("Invalid Email");
+      } else if (password === "") {
+        setFormError(true);
+        setErrorMessage("Password is required");
+      } else if (password.length < 8) {
+        setFormError(true);
+        setErrorMessage("Password must be at least 8 characters long");
+      }
+       setIsLoading(false);
+    }, 1500);
   };
 
   const emailValidation = () => {
@@ -37,17 +43,18 @@ const Login = () => {
 
   const handleEmailInput = (e) => {
     setFormError(false);
-    setErrorMessage("")
+    setErrorMessage("");
     setEmail(e.target.value);
   };
   const handlePasswordInput = (e) => {
     setFormError(false);
-    setErrorMessage("")
+    setErrorMessage("");
     setPassword(e.target.value);
   };
 
   const handleLogin = () => {
     checkValidation();
+   
     if (!formError) {
       console.log("login");
     }
@@ -129,19 +136,30 @@ const Login = () => {
           </div>
           <div onClick={handleLogin} className="login-btn">
             <p>Login</p>
-            <div style={{ width: "20px", marginLeft: "10px" }}>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path
-                  d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
-                  fill="rgba(255,254,254,1)"
-                ></path>
-              </svg>
+            <div>
+              {isLoading ? (
+                <div style={{ width: "50px", marginLeft: "10px" }}>
+                  <img src={Loader} alt="" />
+                </div>
+              ) : (
+                <div style={{ width: "20px", marginLeft: "10px" }}>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path
+                      d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+                      fill="rgba(255,254,254,1)"
+                    ></path>
+                  </svg>
+                </div>
+              )}
             </div>
           </div>
         </div>
       </div>
       <div className="login-bottom">
-        New User? <span onClick={() => navigate('/register')}  className="blue-text">Create New Account.</span>
+        New User?{" "}
+        <span onClick={() => navigate("/register")} className="blue-text">
+          Create New Account.
+        </span>
       </div>
     </div>
   );

@@ -15,11 +15,10 @@ const Layout = () => {
       <div className="layout">
         <Sidebar />
         <div className="content-container">
-         
+           <Outlet />
         </div>
         <RightSidebar />
       </div>
-      <Outlet />
     </div>
   );
 };
